@@ -60,11 +60,14 @@ def check_input(textbox):
     if not cur_10_to_9:
         cur_allowed = cur_allowed[:-1]
 
-    if (
-        any(s not in cur_allowed for s in textbox.text())
-        or textbox.text().count(".") > 1
+    text = textbox.text()
+
+    if text and (
+        any(s not in cur_allowed for s in text)
+        or text.count(".") > 1
+        or text[0] == "."
     ):
-        textbox.setText(textbox.text()[:-1])
+        textbox.setText(text[:-1])
 
 
 def main():
@@ -72,7 +75,7 @@ def main():
     window = uic.loadUi("MainWindow.ui")
     window.setFixedSize(467, 396)
     textbox = window.lineEdit
-    textbox.textChanged.connect(lambda: check_input(textbox))
+    textbox.textEdited.connect(lambda: check_input(textbox))
     window.pushButton0.clicked.connect(lambda: append_to_textbox(textbox, 0))
     window.pushButton1.clicked.connect(lambda: append_to_textbox(textbox, 1))
     window.pushButton2.clicked.connect(lambda: append_to_textbox(textbox, 2))
