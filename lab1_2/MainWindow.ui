@@ -205,6 +205,19 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="2">
+      <widget class="QPushButton" name="pushButtonDot">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>.</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
