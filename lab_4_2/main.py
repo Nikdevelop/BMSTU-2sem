@@ -32,6 +32,7 @@ class App:
         self.canvas = Canvas(bg="white", width=canvas_w, height=canvas_h)
         self.canvas.pack(anchor="nw")
         self.canvas.bind("<Button-1>", self.DrawCircleEvent)
+        self.canvas.bind("<Motion>", self.UpdateCoords)
 
         self.findIntersections_btn = Button(
             text="Найти окружность", command=self.ChangeColorOfCircle
@@ -71,6 +72,15 @@ class App:
             ),
         )
         self.placeCircle_btn.place(x=510, y=180)
+
+        self.xPos_label = Label()
+        self.yPos_label = Label()
+        self.xPos_label.place(x=510, y=470)
+        self.yPos_label.place(x=570, y=470)
+
+    def UpdateCoords(self, event: Event):
+        self.xPos_label.config(text=f"x={event.x}")
+        self.yPos_label.config(text=f"y={event.y}")
 
     def DrawCircle(self, x, y):
         radius = int(self.radiusSelector_sb.get())
